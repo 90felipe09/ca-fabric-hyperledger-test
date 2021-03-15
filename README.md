@@ -8,6 +8,11 @@ The topology of this network is represented by the image below:
 
 `docker-compose up`
 
+## How to enter the container
+
+`docker exec -it <container-name> bash`
+
+
 ## Terminology
 
 The term bootstrap refers to a set of operations that are executed as soon as the service start.
@@ -36,3 +41,17 @@ The script `ca-tls-bootsrap.sh` starts the TLS server, initialize the path varia
 - register the peer 1 from organization 0;
 
 By specifying the environment variable `FABRIC_CA_SERVER_HOME`, it'll deploy it's certificate with the name `ca-cert.pem`.
+
+### rca-org0
+
+`docker-compose up rca-org0`
+
+This node is the CA for organization 0. The organization 0 contribute with only an orderer node. That is why it's aliased as orderer-ca: because it's the CA for the organization that only has an orderer node.
+
+The responsability for this node is to provide a certification for all the nodes from organization 0. i.e.: to provide a certificate for the orderer node and the admin of the orderer node.
+
+The script `orderer-ca-bootsrap.sh` starts the TLS server, initialize the path variables and:
+
+- enroll the admin identity to perform the following operations;
+- register the orderer from organization 0;
+- register the admin of the orderer node from organization 0;
