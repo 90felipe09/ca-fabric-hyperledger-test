@@ -15,7 +15,7 @@ services:
       - FABRIC_CA_SERVER_CSR_HOSTS=0.0.0.0
       - FABRIC_CA_SERVER_DEBUG=true
     volumes:
-      - ./volumes/tls-ca:/tmp/hyperledger/fabric-ca-tls
+      - ./volumes/tls-ca:/tmp/hyperledger
       - ./scripts/tls-ca:/home
     networks:
       - fabric-ca
@@ -27,15 +27,33 @@ services:
    image: hyperledger/fabric-ca
    command: sh -c "fabric-ca-server start -d -b rca-org0-admin:rca-org0-adminpw --port 7053"
    environment:
-      - FABRIC_CA_SERVER_HOME=/tmp/hyperledger/org0/ca/crypto
+      - FABRIC_CA_SERVER_HOME=/tmp/hyperledger/fabric-ca/crypto
       - FABRIC_CA_SERVER_TLS_ENABLED=true
       - FABRIC_CA_SERVER_CSR_CN=rca-org0
       - FABRIC_CA_SERVER_CSR_HOSTS=0.0.0.0
       - FABRIC_CA_SERVER_DEBUG=true
    volumes:
-      - ./volumes/rca-org0:/tmp/hyperledger/org0/ca
+      - ./volumes/org0:/tmp/hyperledger
       - ./scripts/orderer-ca:/home
    networks:
       - fabric-ca
    ports:
       - 7053:7053
+
+  rca-org1:
+   container_name: rca-org1
+   image: hyperledger/fabric-ca
+   command: /bin/bash -c 'fabric-ca-server start -d -b rca-org1-admin:rca-org1-adminpw'
+   environment:
+      - FABRIC_CA_SERVER_HOME=/tmp/hyperledger/fabric-ca/crypto
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_CSR_CN=rca-org1
+      - FABRIC_CA_SERVER_CSR_HOSTS=0.0.0.0
+      - FABRIC_CA_SERVER_DEBUG=true
+   volumes:
+      - ./volumes/org1/ca:/tmp/hyperledger
+      - ./scripts/org1-ca:/home
+   networks:
+      - fabric-ca
+   ports:
+      - 7054:7054
