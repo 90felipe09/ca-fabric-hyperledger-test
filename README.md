@@ -139,12 +139,10 @@ volumes/
 |    └── orderer/  
 ├── org1
 |    ├── ca/
-|    ├── peer1/ 
-|    └── peer2/ 
+|    └── peer1/ 
 └── org2
      ├── ca/
-     ├── peer1/ 
-     └── peer2/ 
+     └── peer1/ 
 ```
 
 ### Relatively Complex network on cloud
@@ -162,14 +160,12 @@ ec2-org0/
 ec2-org1/
 └── org1
      ├── ca/
-     ├── peer1/ 
-     └── peer2/ 
+     └── peer1/ 
 ```
 
 ```
 ec2-org2/
 └── org2
      ├── ca/
-     ├── peer1/ 
-     └── peer2/ 
+     └── peer1/ 
 ```
