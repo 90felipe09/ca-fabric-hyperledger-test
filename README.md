@@ -29,6 +29,7 @@ The term bootstrap refers to a set of operations that are executed as soon as th
 
 Executing the docker-compose will mount volumes of these machines on the volumes folder. Don't worry, the `volumes/` content is in `.gitignore`.
 
+```
 volumes/
 ├── tls/
 |    └── ca/ 
@@ -39,6 +40,7 @@ volumes/
 |    ├── ca/ 
 |    └── peer1/ 
 └── ...
+```
 
 There must be an independent TLS certificates provider organization. It's importance is to permit encryption of the packets being sent from fabric-ca-client. Also, this certificate may be copied to other instances that make use of the SDK. This organization consists of only a fabric-ca node. It's only responsability is to record users registries on `register` operations and to emit pair of public and private keys on `enroll` requests from it's registered users. These certificates will be used by these clients in order to provide secure communications between nodes. (You know, HTTPS)
 
@@ -114,6 +116,7 @@ From the experimental cloud docker swarm it may derive the production oriented a
 
 ### Simple network
 
+```
 volumes/
 ├── tls/
 |    └── ca/ 
@@ -123,9 +126,11 @@ volumes/
 └── org1
      ├── ca/ 
      └── peer1/ 
+```
 
 ### Relatively Complex network
 
+```
 volumes/
 ├── tls/
 |    └── ca/ 
@@ -140,24 +145,31 @@ volumes/
      ├── ca/
      ├── peer1/ 
      └── peer2/ 
+```
 
 ### Relatively Complex network on cloud
 
+```
 ec2-org0/
 ├── tls/
 |    └── ca/ 
 └── org0
      ├── ca/
      └── orderer/
+```
 
+```
 ec2-org1/
 └── org1
      ├── ca/
      ├── peer1/ 
      └── peer2/ 
+```
 
+```
 ec2-org2/
 └── org2
      ├── ca/
      ├── peer1/ 
      └── peer2/ 
+```
