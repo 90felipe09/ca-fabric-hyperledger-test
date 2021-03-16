@@ -198,9 +198,12 @@ ec2-org2/
 [x] Register Peer 1 member and enroll Org1 CA admin
 [x] Deploy Org2 CA container
 [x] Register Peer 1 member and enroll Org2 CA admin
-[ ] Enroll peer 1
-[ ] Enroll admin from Org1
-[ ] Deploy Peer 1 from Org 1
+[x] Enroll peer 1 from Org2
+[x] Enroll admin from Org1
+[x] Deploy Peer 1 from Org 1
+[x] Enroll peer 1 from Org2
+[x] Enroll admin from Org2
+[x] Deploy Peer 1 from Org 2
 [ ] Enroll orderer
 [ ] enroll orderer node
 [ ] Create genesis block and transmission channel
