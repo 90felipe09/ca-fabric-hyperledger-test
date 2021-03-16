@@ -1,0 +1,48 @@
+version: '2'
+
+networks:
+  fabric-ca:
+
+services:
+  org2-ca:
+   container_name: org2-ca
+   image: hyperledger/fabric-ca
+   command: /bin/bash -c 'fabric-ca-server start -d -b rca-org2-admin:rca-org2-adminpw --port 7055'
+   environment:
+      - FABRIC_CA_SERVER_HOME=/tmp/hyperledger/fabric-ca/crypto
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_CSR_CN=rca-org2
+      - FABRIC_CA_SERVER_CSR_HOSTS=0.0.0.0
+      - FABRIC_CA_SERVER_DEBUG=true
+   volumes:
+      - ./volumes/org2/ca:/tmp/hyperledger/fabric-ca
+   networks:
+      - fabric-ca
+   ports:
+      - 7055:7055
+
+  peer1-org2:
+   container_name: peer1-org2
+   image: hyperledger/fabric-peer:1.4
+   environment:
+      - CORE_PEER_ID=peer1-org2
+      - CORE_PEER_ADDRESS=peer1-org2:7051
+      - CORE_PEER_LOCALMSPID=org2MSP
+      - CORE_PEER_MSPCONFIGPATH=/tmp/hyperledger/org2/peer1/msp
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=guide_fabric-ca
+      - FABRIC_LOGGING_SPEC=debug
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/tmp/hyperledger/org2/peer1/tls-msp/signcerts/cert.pem
+      - CORE_PEER_TLS_KEY_FILE=/tmp/hyperledger/org2/peer1/tls-msp/keystore/key.pem
+      - CORE_PEER_TLS_ROOTCERT_FILE=/tmp/hyperledger/org2/peer1/tls-msp/tlscacerts/tls-0-0-0-0-7052.pem
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1-org2:7051
+      - CORE_PEER_GOSSIP_SKIPHANDSHAKE=true
+   working_dir: /opt/gopath/src/github.com/hyperledger/fabric/org2/peer1
+   volumes:
+      - /var/run:/host/var/run
+      - ./client/org2/peer1:/tmp/hyperledger/org2/peer1
+   networks:
+      - fabric-ca

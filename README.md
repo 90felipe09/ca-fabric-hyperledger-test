@@ -14,6 +14,10 @@ Install development dependencies:
 
 `sudo apt install libtool libltdl-dev`
 
+and also
+
+`curl -sSL https://bit.ly/2ysbOFE | bash -s`
+
 Verify if you have Go installed.
 
 `go get -u github.com/hyperledger/fabric-ca/cmd/...`
@@ -204,7 +208,7 @@ ec2-org2/
 [x] Enroll peer 1 from Org2
 [x] Enroll admin from Org2
 [x] Deploy Peer 1 from Org 2
-[ ] Enroll orderer
-[ ] enroll orderer node
+[x] Enroll orderer
+[x] enroll orderer node
 [ ] Create genesis block and transmission channel
 [ ] deploy orderer
