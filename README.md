@@ -194,6 +194,7 @@ ec2-org2/
 
 # To do
 
+```
 [x] Deploy TLS CA container
 [x] Register peer1-org1, peer1-org2, orderer1-org0 and enroll TLS CA admin
 [x] Deploy Org0 CA container
@@ -212,3 +213,4 @@ ec2-org2/
 [x] enroll orderer node
 [ ] Create genesis block and transmission channel
 [ ] deploy orderer
+```
