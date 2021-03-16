@@ -33,6 +33,7 @@ services:
       - FABRIC_CA_SERVER_DEBUG=true
    volumes:
       - ./scripts/org0-ca:/home
+      - ./volumes/org0/ca:/tmp/hyperledger/fabric-ca
    networks:
       - fabric-ca
    ports:

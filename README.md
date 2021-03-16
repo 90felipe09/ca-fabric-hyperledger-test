@@ -192,8 +192,8 @@ ec2-org2/
 
 [x] Deploy TLS CA container
 [x] Register peer1-org1, peer1-org2, orderer1-org0 and enroll TLS CA admin
-[ ] Deploy Org0 CA container
-[ ] Register orderer, admin from Org0 and enroll Org0 CA admin
+[x] Deploy Org0 CA container
+[x] Register orderer, admin from Org0 and enroll Org0 CA admin
 [ ] Deploy Org1 CA container
 [ ] Register Peer 1 member and enroll Org1 CA admin
 [ ] Enroll peer 1
