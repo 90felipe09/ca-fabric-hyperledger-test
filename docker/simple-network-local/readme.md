@@ -27,4 +27,6 @@ volumes/
 15. deploy org1-peer1 container
 17. ./enroll-org0-orderer.sh
 18. ./enroll-org0-admin.sh
+19. ./create-genesis-block.sh;
+20. deploy org0-orderer container;
 

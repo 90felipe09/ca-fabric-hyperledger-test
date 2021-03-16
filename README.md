@@ -191,26 +191,3 @@ ec2-org2/
      ├── ca/
      └── peer1/ 
 ```
-
-# To do
-
-```
-[x] Deploy TLS CA container
-[x] Register peer1-org1, peer1-org2, orderer1-org0 and enroll TLS CA admin
-[x] Deploy Org0 CA container
-[x] Register orderer, admin from Org0 and enroll Org0 CA admin
-[x] Deploy Org1 CA container
-[x] Register Peer 1 member and enroll Org1 CA admin
-[x] Deploy Org2 CA container
-[x] Register Peer 1 member and enroll Org2 CA admin
-[x] Enroll peer 1 from Org2
-[x] Enroll admin from Org1
-[x] Deploy Peer 1 from Org 1
-[x] Enroll peer 1 from Org2
-[x] Enroll admin from Org2
-[x] Deploy Peer 1 from Org 2
-[x] Enroll orderer
-[x] enroll orderer node
-[ ] Create genesis block and transmission channel
-[ ] deploy orderer
-```

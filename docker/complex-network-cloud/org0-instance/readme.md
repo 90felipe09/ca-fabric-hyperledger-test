@@ -8,3 +8,5 @@
 6. ./org0-ca-bootstrap.sh;
 7. ./enroll-org0-orderer.sh;
 8. ./enroll-org0-admin.sh;
+9. ./create-genesis-block.sh;
+10. deploy org0-orderer container;
