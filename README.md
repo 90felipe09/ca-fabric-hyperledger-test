@@ -8,11 +8,29 @@ The topology of this network is represented by the image below:
 
 `docker-compose up`
 
+Install fabric-ca-client binary:
+
+Install development dependencies:
+
+`sudo apt install libtool libltdl-dev`
+
+Verify if you have Go installed.
+
+`go get -u github.com/hyperledger/fabric-ca/cmd/...`
+
+It'll try to download and install fabric-ca github repository. May take a time. If it fails, consider checking out the master branch to the main branch. Yeah, i got this error too.
+
+After the installation you may see that on /go/bin the fabric-ca-server and fabric-ca-client are there. In order to use them, execute:
+
+`. ./define-path.sh`
+
+This script will add them to the go path. To verify that it worked, type fabric-ca-client to see if the bash recognizes the command.
+
 ## How to enter the container
 
 `docker exec -it <container-name> bash`
 
-how to permit shell execution:
+## how to permit shell execution:
 
 `chmod +x <script_name>`
 

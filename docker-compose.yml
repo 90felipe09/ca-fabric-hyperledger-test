@@ -16,14 +16,13 @@ services:
       - FABRIC_CA_SERVER_DEBUG=true
     volumes:
       - ./volumes/tls/ca:/tmp/hyperledger/fabric-ca
-      - ./scripts/tls-ca:/home
     networks:
       - fabric-ca
     ports:
       - 7052:7052
 
-  rca-org0:
-   container_name: rca-org0
+  org0-ca:
+   container_name: org0-ca
    image: hyperledger/fabric-ca
    command: sh -c "fabric-ca-server start -d -b rca-org0-admin:rca-org0-adminpw --port 7053"
    environment:
@@ -33,8 +32,7 @@ services:
       - FABRIC_CA_SERVER_CSR_HOSTS=0.0.0.0
       - FABRIC_CA_SERVER_DEBUG=true
    volumes:
-      - ./volumes/org0:/tmp/hyperledger
-      - ./scripts/orderer-ca:/home
+      - ./scripts/org0-ca:/home
    networks:
       - fabric-ca
    ports:
