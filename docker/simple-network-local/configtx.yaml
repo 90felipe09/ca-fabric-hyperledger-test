@@ -16,16 +16,16 @@ Organizations:
 
     # SampleOrg defines an MSP using the sampleconfig.  It should never be used
     # in production but may be used as a template for other definitions
-    - &org0
+    - &fed
         # DefaultOrg defines the organization which is used in the sampleconfig
         # of the fabric.git development environment
-        Name: org0
+        Name: fed
 
         # ID to load the MSP definition as
         ID: OrdererMSP
 
         # MSPDir is the filesystem path which contains the MSP configuration (CHANGE)
-        MSPDir: ./client/org0/orderer/msp
+        MSPDir: ./client/fed/orderer/msp
 
         # Policies defines the set of policies at this level of the config tree
         # For organization policies, their canonical path is usually
@@ -41,16 +41,16 @@ Organizations:
                 Type: Signature
                 Rule: "OR('OrdererMSP.admin')"
 
-    - &org1
+    - &usp
         # DefaultOrg defines the organization which is used in the sampleconfig
         # of the fabric.git development environment
-        Name: org1
+        Name: usp
 
         # ID to load the MSP definition as
-        ID: Org1MSP
+        ID: uspMSP
 
         # Change
-        MSPDir: ./client/org1/peer1/msp
+        MSPDir: ./client/usp/poli/msp
 
         # Policies defines the set of policies at this level of the config tree
         # For organization policies, their canonical path is usually
@@ -58,23 +58,23 @@ Organizations:
         Policies:
             Readers:
                 Type: Signature
-                Rule: "OR('Org1MSP.admin', 'Org1MSP.peer', 'Org1MSP.client')"
+                Rule: "OR('uspMSP.admin', 'uspMSP.peer', 'uspMSP.client')"
             Writers:
                 Type: Signature
-                Rule: "OR('Org1MSP.admin', 'Org1MSP.client')"
+                Rule: "OR('uspMSP.admin', 'uspMSP.client')"
             Admins:
                 Type: Signature
-                Rule: "OR('Org1MSP.admin')"
+                Rule: "OR('uspMSP.admin')"
             Endorsement:
                 Type: Signature
-                Rule: "OR('Org1MSP.peer')"
+                Rule: "OR('uspMSP.peer')"
 
         # leave this flag set to true. (Change)
         AnchorPeers:
             # AnchorPeers defines the location of peers which can be used
             # for cross org gossip communication.  Note, this value is only
             # encoded in the genesis block in the Application section context
-            - Host: peer1-org1
+            - Host: poli-usp
               Port: 7051
 
 
@@ -187,7 +187,7 @@ Orderer: &OrdererDefaults
     #     Consenters:
     #     - Host: orderer.example.com
     #       Port: 7050
-    #       ClientTLSCert: ./client/org0/orderers/orderer.example.com/tls/server.crt
+    #       ClientTLSCert: ./client/fed/orderers/orderer.example.com/tls/server.crt
     #       ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
     #../organizations/ordererOrganizations/example.com/msp
     # Batch Timeout: The amount of time to wait before creating a batch
@@ -278,19 +278,19 @@ Profiles:
         Orderer:
             <<: *OrdererDefaults
             Organizations:
-                - *org0
+                - *fed
             Capabilities:
                 <<: *OrdererCapabilities
         Consortiums:
             SampleConsortium:
                 Organizations:
-                    - *org1
+                    - *usp
     OneOrgChannel:
         Consortium: SampleConsortium
         <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults
             Organizations:
-                - *org1
+                - *usp
             Capabilities:
                 <<: *ApplicationCapabilities
